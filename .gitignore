@@ -1,0 +1,9 @@
+bin
+obj
+appsettings.json
+Skinet.csproj
+Core.csproj
+Persistence.csproj
+launchsettings.json
+.csproj.user
+Skinet.sln
