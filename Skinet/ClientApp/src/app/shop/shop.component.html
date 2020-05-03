@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <section class="col-lg-3 col-sm-12">
+      <h5 class="ml-3">Sort</h5>
+      <select
+        class="custom-select mb-3"
+        (change)="onSortSelected($event.target.value)"
+      >
+        <option *ngFor="let sort of sortOptions" value="{{ sort.value }}">{{
+          sort.name
+        }}</option>
+      </select>
+
+      <h5 class="ml-3">Brands</h5>
+      <app-product-filter
+        [items]="brands"
+        [itemSelected]="this.shopParams.brandId"
+        (itemClicked)="onBrandSelected($event)"
+      ></app-product-filter>
+
+      <h5 class="ml-3">Types</h5>
+      <app-product-filter
+        [items]="types"
+        [itemSelected]="this.shopParams.typeId"
+        (itemClicked)="onTypeSelected($event)"
+      ></app-product-filter>
+    </section>
+
+    <section class="col-lg-9 col-sm-12">
+      <div class="search-section mb-3">
+        <app-pagination-header
+          [pageNumber]="shopParams.pageNumber"
+          [pageSize]="shopParams.pageSize"
+          [totalCount]="totalCount"
+        >
+        </app-pagination-header>
+        <div class="form-inline">
+          <input
+            (keyup.enter)="onSearch()"
+            type="text"
+            [(ngModel)]="shopParams.searchTerm"
+            class="form-control mr-2 input-search"
+            placeholder="Search"
+          />
+          <button class="btn btn-outline" (click)="onSearch()">Search</button>
+          <button class="btn btn-main ml-2" (click)="onReset()">Reset</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let product of products">
+          <app-product-item [product]="product"></app-product-item>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <app-pagination
+          [totalItems]="this.totalCount"
+          [pageSize]="this.shopParams.pageSize"
+          (pageChanged)="onPageChanged($event)"
+        ></app-pagination>
+      </div>
+    </section>
+  </div>
+</div>

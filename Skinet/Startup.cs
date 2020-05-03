@@ -1,12 +1,15 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Persistence;
+using Skinet.Extensions;
+using Skinet.Helpers;
+using Skinet.Middlewares;
 
 namespace Skinet
 {
@@ -22,8 +25,14 @@ namespace Skinet
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           
+            services.AddAutoMapper(typeof(MappingProfile));
             services.AddControllersWithViews();
-            services.AddDbContext<SkinetDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddDbContext<SkinetDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("Default"), x => x.MigrationsAssembly("Persistence")));
+
+            services.AddApplicationServices();
+
+            services.AddSwaggerDocumentation();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -35,16 +44,9 @@ namespace Skinet
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+
+            app.UseMiddleware<ExceptionMiddleware>();
+            app.UseStatusCodePagesWithRedirects("/errors/{0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -54,6 +56,11 @@ namespace Skinet
             }
 
             app.UseRouting();
+
+            app.UseStaticFiles();
+            
+            app.UseSwaggerDocumentation();
+          
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,0 +1,16 @@
+nav {
+  padding: 13px 0px !important;
+}
+.nav-link {
+  transition: color 0.3s;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  nav {
+    padding: 10px 20px !important;
+  }
+  .nav-item .btn {
+    margin-bottom: 5px;
+  }
+}

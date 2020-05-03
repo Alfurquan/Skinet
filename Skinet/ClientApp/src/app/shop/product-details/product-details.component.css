@@ -1,0 +1,9 @@
+.details {
+  margin-top: 1rem;
+}
+
+@media (min-width: 992px) {
+  .details {
+    margin-top: 3rem;
+  }
+}

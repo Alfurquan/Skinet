@@ -1,0 +1,79 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+@import '~font-awesome/css/font-awesome.min.css';
+
+$primary-color: #c1d62f;
+$deep-primary-color: #8b9a1e;
+
+.navbar-light .navbar-brand {
+  color: $primary-color;
+}
+.navbar-light .navbar-brand.active,
+.navbar-light .navbar-brand:hover {
+  color: $primary-color;
+}
+
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show > .nav-link {
+  color: $primary-color !important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: $primary-color;
+}
+
+.list-group-item.active {
+  background-color: $primary-color;
+  border-color: $primary-color;
+}
+
+.btn-outline {
+  background-color: white;
+  color: $primary-color;
+  border-color: $primary-color;
+  transition: all 0.2s ease;
+}
+.btn-outline:hover {
+  background-color: $primary-color;
+  color: white;
+}
+
+.page-item.active .page-link {
+  background-color: $primary-color;
+  border-color: $primary-color;
+}
+
+.btn-main {
+  background-color: $primary-color;
+  color: white;
+  border-color: $primary-color;
+  transition: all 0.2s ease;
+}
+
+.btn-main:hover {
+  background-color: $deep-primary-color;
+  border-color: $deep-primary-color;
+  color: white;
+}
+
+.text-main {
+  color: $primary-color;
+}
+
+.text-dark-main {
+  color: $deep-primary-color;
+}
+
+.links {
+  color: $primary-color;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.links:hover {
+  color: $deep-primary-color;
+  text-decoration: none;
+}
