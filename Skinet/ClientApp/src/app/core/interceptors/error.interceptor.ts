@@ -3,7 +3,6 @@ import {
   HttpInterceptor,
   HttpHandler,
   HttpRequest,
-  HttpEventType,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { Router, NavigationExtras } from '@angular/router';
@@ -47,7 +46,6 @@ export class ErrorInterceptor implements HttpInterceptor {
             const navigationExtras: NavigationExtras = {
               state: { error: err.error },
             };
-            console.log('nav', navigationExtras);
             this.router.navigate(['/server-error'], navigationExtras);
           }
         }

@@ -1,0 +1,26 @@
+.pageHeader {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+.pageHeader .page-title h2 {
+  color: #797979;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+.page-title {
+  padding-top: 0.5rem;
+}
+
+@media (max-width: 479px) {
+  .pageHeader .page-title h2 {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  .xng-breadcrumb-root {
+    float: left;
+  }
+}

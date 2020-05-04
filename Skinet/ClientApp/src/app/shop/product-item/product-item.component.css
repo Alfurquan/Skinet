@@ -1,7 +1,38 @@
-.btn-group {
+.btn {
+  width: 25%;
+  height: 40px !important;
+}
+.image {
+  cursor: pointer;
+}
+.image:hover {
+  opacity: 1;
+}
+.image:hover .hover-overlay.btn {
+  transform: none;
+  opacity: 1;
+}
+
+.hover-overlay {
+  position: absolute;
   width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: all 0.4s;
 }
 
 .btn {
-  width: 50%;
+  z-index: 1000;
+  transition: all 0.5s;
+}
+
+.image:hover .hover-overlay {
+  opacity: 1;
+}
+
+.image:hover .btn {
+  transform: scale(1.1);
 }

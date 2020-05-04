@@ -10,6 +10,7 @@ using Persistence;
 using Skinet.Extensions;
 using Skinet.Helpers;
 using Skinet.Middlewares;
+using StackExchange.Redis;
 
 namespace Skinet
 {
@@ -29,6 +30,13 @@ namespace Skinet
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddControllersWithViews();
             services.AddDbContext<SkinetDbContext>(x => x.UseSqlServer(Configuration.GetConnectionString("Default"), x => x.MigrationsAssembly("Persistence")));
+
+
+            services.AddSingleton<IConnectionMultiplexer>(c =>
+            {
+                var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
+                return ConnectionMultiplexer.Connect(configuration);
+            });
 
             services.AddApplicationServices();
 

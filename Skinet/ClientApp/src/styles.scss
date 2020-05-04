@@ -34,11 +34,22 @@ $deep-primary-color: #8b9a1e;
   background-color: white;
   color: $primary-color;
   border-color: $primary-color;
-  transition: all 0.2s ease;
+  transition: all 0.4s ease;
 }
 .btn-outline:hover {
   background-color: $primary-color;
   color: white;
+}
+
+.btn-outline-transparent {
+  color: $primary-color;
+  border-color: $primary-color;
+  transition: all 0.4s ease;
+  background-color: transparent;
+}
+.btn-outline-transparent:hover {
+  color: white;
+  background-color: $primary-color;
 }
 
 .page-item.active .page-link {
@@ -76,4 +87,30 @@ $deep-primary-color: #8b9a1e;
 .links:hover {
   color: $deep-primary-color;
   text-decoration: none;
+}
+
+.xng-breadcrumb-root {
+  padding: 16px 8px;
+  border-radius: 0;
+  float: right;
+}
+
+.xng-breadcrumb-link:hover {
+  color: $deep-primary-color;
+  text-decoration: none !important;
+}
+
+label.xng-breadcrumb-trail {
+  margin-bottom: 0;
+}
+
+.xng-breadcrumb-separator {
+  padding: 0 0;
+}
+
+@media (max-width: 479px) {
+  .xng-breadcrumb-root {
+    float: left;
+    padding: 10px 0px;
+  }
 }

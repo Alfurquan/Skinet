@@ -38,9 +38,13 @@
       </ul>
       <ul class="navbar-nav ml-auto my-2 my-lg-0">
         <li class="nav-item mr-3">
-          <a href="" class="nav-link">
+          <a routerLink="/basket" routerLinkActive="active" class="nav-link">
             <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
-            <span class="badge badge-warning badge-pill">5</span>
+            <span
+              class="badge badge-warning badge-pill"
+              *ngIf="basket$ | async as basket"
+              >{{ basket.items.length }}</span
+            >
           </a>
         </li>
         <li class="nav-item">

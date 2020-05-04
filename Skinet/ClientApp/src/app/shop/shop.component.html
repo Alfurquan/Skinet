@@ -1,29 +1,31 @@
 <div class="container">
   <div class="row">
     <section class="col-lg-3 col-sm-12">
-      <h5 class="ml-3">Sort</h5>
-      <select
-        class="custom-select mb-3"
-        (change)="onSortSelected($event.target.value)"
-      >
-        <option *ngFor="let sort of sortOptions" value="{{ sort.value }}">{{
-          sort.name
-        }}</option>
-      </select>
+      <ng-container *ngIf="brands && types">
+        <h5 class="ml-3">Sort</h5>
+        <select
+          class="custom-select mb-3"
+          (change)="onSortSelected($event.target.value)"
+        >
+          <option *ngFor="let sort of sortOptions" value="{{ sort.value }}">{{
+            sort.name
+          }}</option>
+        </select>
 
-      <h5 class="ml-3">Brands</h5>
-      <app-product-filter
-        [items]="brands"
-        [itemSelected]="this.shopParams.brandId"
-        (itemClicked)="onBrandSelected($event)"
-      ></app-product-filter>
+        <h5 class="ml-3">Brands</h5>
+        <app-product-filter
+          [items]="brands"
+          [itemSelected]="this.shopParams.brandId"
+          (itemClicked)="onBrandSelected($event)"
+        ></app-product-filter>
 
-      <h5 class="ml-3">Types</h5>
-      <app-product-filter
-        [items]="types"
-        [itemSelected]="this.shopParams.typeId"
-        (itemClicked)="onTypeSelected($event)"
-      ></app-product-filter>
+        <h5 class="ml-3">Types</h5>
+        <app-product-filter
+          [items]="types"
+          [itemSelected]="this.shopParams.typeId"
+          (itemClicked)="onTypeSelected($event)"
+        ></app-product-filter>
+      </ng-container>
     </section>
 
     <section class="col-lg-9 col-sm-12">
@@ -34,7 +36,7 @@
           [totalCount]="totalCount"
         >
         </app-pagination-header>
-        <div class="form-inline">
+        <div class="form-inline" *ngIf="products">
           <input
             (keyup.enter)="onSearch()"
             type="text"

@@ -7,3 +7,5 @@ Persistence.csproj
 launchsettings.json
 .csproj.user
 Skinet.sln
+.suo
+.dtbcache.v2
